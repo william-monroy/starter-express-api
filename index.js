@@ -39,11 +39,11 @@ app.use(function (req, res, next) {
 app.post("/export-csv", (req, res) => {
   const body = req.body;
   console.log(req.body);
-  let ruta = __dirname + "/reports/reporte.csv";
+  let ruta = __dirname + "/tmp/reports/reporte.csv";
   let data = body.data;
   switch (body.type) {
     case "Historial Presion Arterial":
-      ruta = __dirname + "/reports/mediciones.csv";
+      ruta = __dirname + "/tmp/reports/mediciones.csv";
       fs.writeFileSync(
         ruta,
         "idPaciente, fecha, hora, estado, presion Sup Promedio, presion Inf Promedio, pulso Promedio, medicamentos\n"
@@ -61,7 +61,7 @@ app.post("/export-csv", (req, res) => {
 
       break;
     case "Reportes Semanales":
-      ruta = __dirname + `/reports/reportesSemanales.csv`;
+      ruta = __dirname + `/tmp/reports/reportesSemanales.csv`;
       fs.writeFileSync(
         ruta,
         "idPaciente, fecha, hora, seguimiento Dieta, consumo Sal, consumo Refrescos, cantidad Refrescos, actividad Fisica, num Actividad Fisica, horas Descanso, seguimiento Receta, medicamentos\n"
@@ -78,7 +78,7 @@ app.post("/export-csv", (req, res) => {
 
       break;
     case "Resportes Salud":
-      ruta = __dirname + `/reports/reportesSalud.csv`;
+      ruta = __dirname + `/tmp/reports/reportesSalud.csv`;
       fs.writeFileSync(
         ruta,
         "idPaciente, fecha, hora, estadoSalud, sintomas Presentes, sintomas, comentarios Adicionales, medicamentos\n"
@@ -100,7 +100,7 @@ app.post("/export-csv", (req, res) => {
 app.post("/export-csv-gen", (req, res) => {
   const body = req.body;
   console.log(body);
-  let ruta = __dirname + "/reports";
+  let ruta = __dirname + "/tmp/reports";
   let data = body.data;
   switch (body.type) {
     case "Historial Presion Arterial":
